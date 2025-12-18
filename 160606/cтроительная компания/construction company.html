@@ -5,79 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>СТРОИТЕЛЬНАЯ КОМПАНИЯ</title>
     <style>
-         body {
-            font-family: 'Arial', sans-serif;
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #fff0f6; /* Светлый фон */
+            background: #f2f2f2;
+            color: #333;
         }
+
         header {
-            background: #ff69b4; /* Ярко-розовый фон */
+            background: #2f2f2f;
             color: #fff;
-            padding: 20px 0;
+            padding: 25px 0;
             text-align: center;
-            position: relative;
+        position: relative;
         }
+
         nav {
             margin: 20px 0;
         }
+
         nav a {
-            color: #fff;
+            color: #ddd;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
         }
+
         nav a:hover {
-            color: #ffe4e1; /* Светло-розовый при наведении */
-        }
-        section {
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 800px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #ff1493; /* Ярко-розовый цвет заголовков */
-        }
-        p, li {
-            color: #d5006d; /* Темно-розовый цвет текста */
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #ff69b4; /* Ярко-розовый фон внизу */
             color: #fff;
         }
+
+        section {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 40px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            border-left: 5px solid #666;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
         .services {
-            display: flex; /* Устанавливаем флекс-контейнер */
-            flex-wrap: nowrap; /* Не переносим элементы на новую строку */
-            overflow-x: auto; /* Добавляем горизонтальную прокрутку при необходимости */
-            gap: 20px; /* Промежуток между карточками */
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
         }
-        .service-card {
-            background: #ffe4e1; /* Светло-розовый фон карточек */
-            border-radius: 5px;
-            padding: 15px;
-            min-width: 200px; /* Минимальная ширина карточек */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
+
+       .service-card {
+    min-width: 280px;
+    background: #e6e6e6;
+    padding: 25px;
+    border-radius: 6px;
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease;   /* плавность */
         }
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
+    
+    .service-card:hover {
+    transform: translateY(-8px);   /* эффект "взлёта" */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
         }
+
         .gallery img {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
+            border-radius: 6px;
         }
+
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        footer {
+            background: #2f2f2f;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        form button {
+            padding: 12px 25px;
+            background: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #000;
+        }
+        .catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.catalog-card {
+    background: #e6e6e6;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.catalog-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.catalog-card h3 {
+    margin-bottom: 10px;
+}
+
+/* Плавные кнопки */
+form button {
+    padding: 14px 30px;
+    font-size: 18px;
+    background: #ffad14;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: #ffad14;
+    transform: scale(1.05);
+}
+
+.catalog-card, .service-card, .review-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog-card:hover, .service-card:hover, .review-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+.catalog-card {
+    position: relative;
+}
+
+.catalog-card::after {
+    content: "Кликните для подробностей!";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.catalog-card:hover::after {
+    opacity: 1;
+}
     </style>
 </head>
 <body>
@@ -139,16 +248,69 @@
 
 <section id="gallery">
     <h2>КАТАЛОГ</h2>
-    <div class="gallery">
-        <img src="image1.jpg" alt="Строительство дома">
-        <img src="image2.jpg" alt="Ремонт квартиры">
-        <img src="image3.jpg" alt="Ландшафтный дизайн">
-        <img src="image4.jpg" alt="Строительство офиса">
-        <img src="image5.jpg" alt="Интерьер квартиры">
-        <img src="image6.jpg" alt="Благоустройство территории">
+
+    <div class="catalog">
+        <div class="catalog-card">
+            <div class="catalog-icon">🏠</div>
+            <h3>Частные дома</h3>
+            <p>Проекты и строительство домов и коттеджей.</p>
+        </div>
+
+        <div class="catalog-card">
+            <div class="catalog-icon">🏢</div>
+            <h3>Коммерческие здания</h3>
+            <p>Офисы, магазины, склады под ключ.</p>
+        </div>
+
+        <div class="catalog-card">
+            <div class="catalog-icon">🛠️</div>
+            <h3>Ремонт квартир</h3>
+            <p>Капитальный и косметический ремонт помещений.</p>
+        </div>
+
+        <div class="catalog-card">
+            <div class="catalog-icon">🌳</div>
+            <h3>Ландшафт</h3>
+            <p>Благоустройство и озеленение территорий.</p>
+        </div>
+
+        <div class="catalog-card">
+            <div class="catalog-icon">📐</div>
+            <h3>Проектирование</h3>
+            <p>Архитектурные и инженерные решения.</p>
+        </div>
+
+        <div class="catalog-card">
+            <div class="catalog-icon">⚡</div>
+            <h3>Энергосбережение</h3>
+            <p>Современные технологии и утепление.</p>
+        </div>
+
+        <div class="catalog-card">
+            <div class="catalog-icon">🧱</div>
+            <h3>Покупка материалов</h3>
+            <p>Широкий выбор строительных и отделочных материалов.</p>
+        </div>
+
+        <div class="catalog-card">
+            <div class="catalog-icon">☕</div>
+            <h3>Кафе — уютное место</h3>
+            <p>Комфортная зона отдыха.</p>
+        </div>
     </div>
 </section>
-
+<section id="contact">
+    <h2>Контакты</h2>
+    <p>Телефон: +7 (123) 456-78-90</p>
+    <p>Email: ridalovo.ru</p>
+    <p>Адрес: г. Тверь</p>
+    <h3>Мы на карте</h3>
+<iframe 
+    src="https://yandex.ru/map-widget/v1/?um=constructor%3A1d1e9f9b1b1b1b1b1b1b1b1b1b1b1b1b&source=constructor"
+    width="100%" 
+    height="350" 
+    frameborder="0">
+</iframe>
 <section id="employment">
     <h2>ТРУДОУСТРОЙСТВО</h2>
     <p>Мы всегда ищем талантливых и увлеченных людей, которые хотят стать частью нашей команды. Если вы заинтересованы в работе в строительной компании, ознакомьтесь с нашими текущими вакансиями ниже:</p>
@@ -160,17 +322,51 @@
     </ul>
     <p>Если вы хотите подать заявку на одну из вакансий, пожалуйста, отправьте свое резюме на наш электронный адрес: <a href="mailto:hr@company.com">hr@company.com</a>.</p>
 </section>
+    <section id="request">
+    <h2>ОСТАВИТЬ ЗАЯВКУ</h2>
 
-<section id="contact">
-    <h2>Контакты</h2>
-    <p>Телефон: +7 (123) 456-78-90</p>
-    <p>Email: ridalovo.ru</p>
-    <p>Адрес: г. Тверь</p>
+    <form onsubmit="alert('Заявка отправлена! Мы свяжемся с вами.'); return false;">
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="tel" placeholder="Телефон" required>
+        <input type="email" placeholder="Email">
+        <textarea rows="5" placeholder="Опишите задачу"></textarea>
+        <button>ОТПРАВИТЬ ЗАЯВКУ</button>
+    </form>
+</section>
+<section id="reviews">
+    <h2>ОТЗЫВЫ КЛИЕНТОВ</h2>
+
+    <div class="advantages">
+        <div>
+            <strong>Иван П.</strong><br>
+            Заказывали строительство дома. Всё выполнено качественно и в срок.
+        </div>
+        <div>
+            <strong>Анна К.</strong><br>
+            Делали ремонт квартиры. Очень довольны результатом!
+        </div>
+        <div>
+            <strong>Сергей М.</strong><br>
+            Отличная команда, грамотные специалисты. Рекомендую.
+        </div>
+    </div>
+</section>
 </section>
 
 <footer>
     <p>&copy; 2025 Строительная Компания.</p>
 </footer>
+<script>
+const elements = document.querySelectorAll('.fade-in');
 
+window.addEventListener('scroll', () => {
+    elements.forEach(el => {
+        const position = el.getBoundingClientRect().top;
+        if (position < window.innerHeight - 100) {
+            el.classList.add('show');
+        }
+    });
+});
+</script>
 </body>
 </html>
