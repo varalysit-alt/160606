@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>СТРОИТЕЛЬНАЯ КОМПАНИЯ</title>
     <style>
+        html {
+    scroll-behavior: smooth;
+}
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -187,6 +190,163 @@ form button:hover {
 .catalog-card:hover::after {
     opacity: 1;
 }
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.material-card {
+    background: #f3f3f3;
+    padding: 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.material-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.material-card h3 {
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e53935;
+}
+
+/* Акция дня */
+.sale-day {
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sale-day h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.sale-day span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sale-day button {
+    background: #fff;
+    color: #ff5722;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.sale-day button:hover {
+    transform: scale(1.05);
+}
+/* Фильтр */
+.filter-buttons {
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-buttons button {
+    padding: 10px 18px;
+    border: none;
+    background: #444;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.filter-buttons button:hover {
+    background: #000;
+}
+
+/* Кнопка в корзину */
+.add-cart {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: #ffad14;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.add-cart:hover {
+    transform: scale(1.05);
+}
+
+/* Корзина */
+.cart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ffad14;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    z-index: 1000;
+}
+.about {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: center;
+}
+
+.about-text h2 {
+    margin-bottom: 15px;
+}
+
+.about-text p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.stat {
+    background: #f3f3f3;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.stat span {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffad14;
+}
     </style>
 </head>
 <body>
@@ -236,14 +396,62 @@ form button:hover {
 
 <section id="materials">
     <h2>МАТЕРИАЛЫ</h2>
-        <p>Мы используем только качественные и надежные материалы для строительства и ремонта:</p>
-    <ul>
-        <li>кирпичи и блоки различных типов</li>
-        <li>бетон и железобетонные конструкции</li>
-        <li>деревянные материалы для каркасного строительства</li>
-        <li>современные изоляционные материалы</li>
-        <li>энергоэффективные окна и двери</li>
-    </ul>
+        <div class="cart">
+    🛒 Корзина: <span id="cartCount">0</span>
+</div>
+
+<section id="materials">
+    <h2>МАТЕРИАЛЫ И МАГАЗИН</h2>
+
+    <!-- ФИЛЬТР -->
+    <div class="filter-buttons">
+        <button onclick="filterItems('all')">Все</button>
+        <button onclick="filterItems('brick')">Кирпич</button>
+        <button onclick="filterItems('block')">Блоки</button>
+        <button onclick="filterItems('cement')">Цемент</button>
+        <button onclick="filterItems('wood')">Пиломатериалы</button>
+        <button onclick="filterItems('tools')">Инструменты</button>
+    </div>
+
+    <div class="materials-grid">
+
+        <div class="material-card" data-category="brick">
+            <h3>🧱 Кирпич строительный</h3>
+            <p>Красный, облицовочный</p>
+            <div class="price">18 ₽ / шт</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+
+        <div class="material-card" data-category="block">
+            <h3>⬛ Газобетон D500</h3>
+            <p>Для несущих стен</p>
+            <div class="price">4 800 ₽ / м³</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+
+        <div class="material-card" data-category="cement">
+            <h3>🧯 Цемент М500</h3>
+            <p>Мешок 50 кг</p>
+            <div class="price">390 ₽</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+
+        <div class="material-card" data-category="wood">
+            <h3>🪵 Брус 150×150</h3>
+            <p>Сухой, строганный</p>
+            <div class="price">14 000 ₽ / м³</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+
+        <div class="material-card" data-category="tools">
+            <h3>🔩 Саморезы</h3>
+            <p>Универсальные</p>
+            <div class="price">50 ₽</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+
+    </div>
+</section>
 </section>
 
 <section id="gallery">
@@ -299,8 +507,52 @@ form button:hover {
         </div>
     </div>
 </section>
+<section id="about">
+    <h2>О НАС</h2>
+
+    <div class="about">
+        <div class="about-text">
+            <p>
+                Мы — современная строительная компания с полным циклом работ:
+                от проектирования до сдачи объекта «под ключ».
+                Работаем честно, по договору и строго соблюдаем сроки.
+            </p>
+
+            <p>
+                В нашей команде — опытные инженеры, строители и дизайнеры,
+                которые используют только проверенные технологии и материалы.
+                Для нас важно качество, безопасность и доверие клиентов.
+            </p>
+
+            <p>
+                Мы строим дома, коммерческие здания, выполняем ремонты,
+                благоустраиваем территории и сопровождаем проекты
+                на всех этапах строительства.
+            </p>
+        </div>
+
+        <div class="about-stats">
+            <div class="stat">
+                <span>10+</span>
+                <p>лет опыта</p>
+            </div>
+            <div class="stat">
+                <span>250+</span>
+                <p>реализованных проектов</p>
+            </div>
+            <div class="stat">
+                <span>50+</span>
+                <p>сотрудников в штате</p>
+            </div>
+            <div class="stat">
+                <span>100%</span>
+                <p>довольных клиентов</p>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="contact">
-    <h2>Контакты</h2>
+    <h2>КОНТАКТЫ</h2>
     <p>Телефон: +7 (123) 456-78-90</p>
     <p>Email: ridalovo.ru</p>
     <p>Адрес: г. Тверь</p>
@@ -311,6 +563,7 @@ form button:hover {
     height="350" 
     frameborder="0">
 </iframe>
+
 <section id="employment">
     <h2>ТРУДОУСТРОЙСТВО</h2>
     <p>Мы всегда ищем талантливых и увлеченных людей, которые хотят стать частью нашей команды. Если вы заинтересованы в работе в строительной компании, ознакомьтесь с нашими текущими вакансиями ниже:</p>
@@ -367,6 +620,26 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+</script>
+<script>
+let cartCount = 0;
+
+document.querySelectorAll('.add-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        cartCount++;
+        document.getElementById('cartCount').innerText = cartCount;
+    });
+});
+
+function filterItems(category) {
+    document.querySelectorAll('.material-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
 </script>
 </body>
 </html>
