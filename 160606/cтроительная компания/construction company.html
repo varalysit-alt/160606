@@ -7,7 +7,7 @@
     <style>
         html {
     scroll-behavior: smooth;
-}
+            }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -347,6 +347,134 @@ form button:hover {
     font-weight: bold;
     color: #ffad14;
 }
+.jobs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.job-card {
+    background: #f3f3f3;
+    padding: 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.job-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.job-card h3 {
+    margin-bottom: 10px;
+}
+
+.job-card button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ffad14;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.job-card button:hover {
+    transform: scale(1.05);
+}
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.contact-card {
+    background: #f3f3f3;
+    padding: 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.contact-card h3 {
+    margin-bottom: 15px;
+}
+
+.contact-card p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.contact-btn {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    padding: 12px;
+    background: #ffad14;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    transform: scale(1.05);
+}
+
+.contact-btn.outline {
+    background: transparent;
+    border: 2px solid #ffad14;
+    color: #ffad14;
+}
+
+.contact-btn.outline:hover {
+    background: #ffad14;
+    color: #fff;
+}
+
+.contact-card.map iframe {
+    border-radius: 8px;
+}
     </style>
 </head>
 <body>
@@ -553,27 +681,87 @@ form button:hover {
 </section>
 <section id="contact">
     <h2>КОНТАКТЫ</h2>
-    <p>Телефон: +7 (123) 456-78-90</p>
-    <p>Email: ridalovo.ru</p>
-    <p>Адрес: г. Тверь</p>
-    <h3>Мы на карте</h3>
-<iframe 
-    src="https://yandex.ru/map-widget/v1/?um=constructor%3A1d1e9f9b1b1b1b1b1b1b1b1b1b1b1b1b&source=constructor"
-    width="100%" 
-    height="350" 
-    frameborder="0">
-</iframe>
+
+    <div class="contact-grid">
+
+        <!-- Контакты -->
+        <div class="contact-card">
+            <h3>Свяжитесь с нами</h3>
+            <p>📞 <strong>Телефон:</strong><br> +7 (123) 456-78-90</p>
+            <p>📧 <strong>Email:</strong><br> info@ridalovo.ru</p>
+            <p>📍 <strong>Адрес:</strong><br> г. Тверь</p>
+        </div>
+
+        <!-- График -->
+        <div class="contact-card">
+            <h3>График работы</h3>
+            <p>🕘 Пн–Пт: 9:00 – 18:00</p>
+            <p>🕙 Сб: 10:00 – 16:00</p>
+            <p>❌ Вс: выходной</p>
+
+            <a href="#request" class="contact-btn">Оставить заявку</a>
+            <a href="tel:+71234567890" class="contact-btn outline">Позвонить</a>
+        </div>
+
+        <!-- Карта -->
+        <div class="contact-card map">
+            <h3>Мы на карте</h3>
+            <iframe 
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3A1d1e9f9b1b1b1b1b1b1b1b1b1b1b1b1b&source=constructor"
+                width="100%" 
+                height="230" 
+                frameborder="0">
+            </iframe>
+        </div>
+
+    </div>
+</section>
 
 <section id="employment">
     <h2>ТРУДОУСТРОЙСТВО</h2>
-    <p>Мы всегда ищем талантливых и увлеченных людей, которые хотят стать частью нашей команды. Если вы заинтересованы в работе в строительной компании, ознакомьтесь с нашими текущими вакансиями ниже:</p>
-    <ul>
-        <li><strong>Прораб</strong> - ответственный за управление строительными проектами, контроль за качеством и соблюдение сроков.</li>
-        <li><strong>Продавец-консультант</strong> - работа в зале, с клиентами.</li>
-        <li><strong>Специалист по ландшафтному дизайну</strong> - создание уникальных ландшафтных решений для наших клиентов.</li>
-        <li><strong>Строитель</strong> - выполнение строительных работ, соблюдение стандартов безопасности.</li>
-    </ul>
-    <p>Если вы хотите подать заявку на одну из вакансий, пожалуйста, отправьте свое резюме на наш электронный адрес: <a href="mailto:hr@company.com">hr@company.com</a>.</p>
+    <p>Присоединяйтесь к нашей команде профессионалов</p>
+
+    <div class="jobs">
+
+        <!-- СТРОИТЕЛЬСТВО -->
+        <div class="job-card">
+            <h3>Прораб</h3>
+            <p>Контроль объектов, управление бригадой, соблюдение сроков и качества работ.</p>
+            <button onclick="openJob('Прораб')">Откликнуться</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Строитель</h3>
+            <p>Выполнение строительных и монтажных работ на объектах компании.</p>
+            <button onclick="openJob('Строитель')">Откликнуться</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Ландшафтный дизайнер</h3>
+            <p>Проектирование и реализация ландшафтных решений, работа с заказчиками.</p>
+            <button onclick="openJob('Ландшафтный дизайнер')">Откликнуться</button>
+        </div>
+
+        <!-- МАГАЗИН -->
+        <div class="job-card store">
+            <h3>Продавец-консультант</h3>
+            <p>Консультирование клиентов, продажа строительных материалов и товаров.</p>
+            <button onclick="openJob('Продавец-консультант')">Откликнуться</button>
+        </div>
+
+        <div class="job-card store">
+            <h3>Кассир магазина</h3>
+            <p>Работа на кассе, расчёт покупателей, ведение кассовой смены.</p>
+            <button onclick="openJob('Кассир магазина')">Откликнуться</button>
+        </div>
+
+        <div class="job-card store">
+            <h3>Кладовщик магазина</h3>
+            <p>Приём товара, учёт, сбор заказов, поддержание порядка на складе.</p>
+            <button onclick="openJob('Кладовщик магазина')">Откликнуться</button>
+        </div>
+
+    </div>
 </section>
     <section id="request">
     <h2>ОСТАВИТЬ ЗАЯВКУ</h2>
@@ -639,6 +827,34 @@ function filterItems(category) {
             card.style.display = 'none';
         }
     });
+}
+</script>
+<div class="modal" id="jobModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeJob()">×</span>
+        <h3>Отклик на вакансию</h3>
+
+        <form onsubmit="sendJob(); return false;">
+            <input type="text" id="jobName" readonly>
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="tel" placeholder="Телефон" required>
+            <button>Отправить</button>
+        </form>
+    </div>
+</div>
+<script>
+function openJob(job) {
+    document.getElementById('jobModal').style.display = 'flex';
+    document.getElementById('jobName').value = job;
+}
+
+function closeJob() {
+    document.getElementById('jobModal').style.display = 'none';
+}
+
+function sendJob() {
+    alert('Заявка отправлена! Мы свяжемся с вами.');
+    closeJob();
 }
 </script>
 </body>
