@@ -475,6 +475,53 @@ form button:hover {
 .contact-card.map iframe {
     border-radius: 8px;
 }
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.review-card {
+    background: #f3f3f3;
+    padding: 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    background: #ffad14;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.stars {
+    color: #ffad14;
+    font-size: 18px;
+}
+
+.review-card p {
+    line-height: 1.6;
+}
     </style>
 </head>
 <body>
@@ -774,22 +821,55 @@ form button:hover {
         <button>ОТПРАВИТЬ ЗАЯВКУ</button>
     </form>
 </section>
-<section id="reviews">
+<section id="reviews" class="fade-in">
     <h2>ОТЗЫВЫ КЛИЕНТОВ</h2>
 
-    <div class="advantages">
-        <div>
-            <strong>Иван П.</strong><br>
-            Заказывали строительство дома. Всё выполнено качественно и в срок.
+    <div class="reviews-grid">
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="avatar">ИП</div>
+                <div>
+                    <strong>Иван Петров</strong>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+            <p>
+                Заказывали строительство дома под ключ.
+                Всё выполнено качественно, в срок и без лишних вопросов.
+                Однозначно рекомендую!
+            </p>
         </div>
-        <div>
-            <strong>Анна К.</strong><br>
-            Делали ремонт квартиры. Очень довольны результатом!
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="avatar">АК</div>
+                <div>
+                    <strong>Анна Кузнецова</strong>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+            <p>
+                Делали ремонт квартиры. Очень аккуратно,
+                помогли с выбором материалов, результатом довольны.
+            </p>
         </div>
-        <div>
-            <strong>Сергей М.</strong><br>
-            Отличная команда, грамотные специалисты. Рекомендую.
+
+        <div class="review-card">
+            <div class="review-header">
+                <div class="avatar">СМ</div>
+                <div>
+                    <strong>Сергей Михайлов</strong>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+            <p>
+                Отличная команда специалистов.
+                Приятно работать с профессионалами,
+                всё прозрачно и по договору.
+            </p>
         </div>
+
     </div>
 </section>
 </section>
