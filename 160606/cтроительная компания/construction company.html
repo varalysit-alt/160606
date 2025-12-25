@@ -522,10 +522,131 @@ form button:hover {
 .review-card p {
     line-height: 1.6;
 }
+/* Корзина */
+.cart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ffad14;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.cart-panel {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 320px;
+    max-height: 80vh;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    overflow-y: auto;
+    display: none;
+    z-index: 2000;
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.cart-panel .cart-footer button {
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    background: #ffad14;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+.cart-panel .cart-footer button:hover {
+    transform: scale(1.05);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.cart-item button {
+    background: transparent;
+    color: #ff3d00;
+    font-size: 16px;
+    padding: 0 4px;
+    cursor: pointer;
+}
+
+/* Модалки */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background: #ffad14;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-content button:hover {
+    transform: scale(1.05);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
     </style>
 </head>
-<body>
-
+    <body>
 <header>
     <h1>СТРОИТЕЛЬНАЯ КОМПАНИЯ</h1>
     <nav>
@@ -571,14 +692,11 @@ form button:hover {
 
 <section id="materials">
     <h2>МАТЕРИАЛЫ</h2>
-        <div class="cart">
-    🛒 Корзина: <span id="cartCount">0</span>
-</div>
 
 <section id="materials">
     <h2>МАТЕРИАЛЫ И МАГАЗИН</h2>
 
-    <!-- ФИЛЬТР -->
+    <!-- Фильтр -->
     <div class="filter-buttons">
         <button onclick="filterItems('all')">Все</button>
         <button onclick="filterItems('brick')">Кирпич</button>
@@ -588,43 +706,112 @@ form button:hover {
         <button onclick="filterItems('tools')">Инструменты</button>
     </div>
 
+    <!-- Сетка товаров -->
     <div class="materials-grid">
-
         <div class="material-card" data-category="brick">
             <h3>🧱 Кирпич строительный</h3>
             <p>Красный, облицовочный</p>
-            <div class="price">18 ₽ / шт</div>
+            <div class="price">18 ₽</div>
             <button class="add-cart">В корзину</button>
         </div>
-
         <div class="material-card" data-category="block">
             <h3>⬛ Газобетон D500</h3>
             <p>Для несущих стен</p>
-            <div class="price">4 800 ₽ / м³</div>
+            <div class="price">4800 ₽</div>
             <button class="add-cart">В корзину</button>
         </div>
-
         <div class="material-card" data-category="cement">
             <h3>🧯 Цемент М500</h3>
             <p>Мешок 50 кг</p>
             <div class="price">390 ₽</div>
             <button class="add-cart">В корзину</button>
         </div>
-
         <div class="material-card" data-category="wood">
             <h3>🪵 Брус 150×150</h3>
             <p>Сухой, строганный</p>
-            <div class="price">14 000 ₽ / м³</div>
+            <div class="price">14000 ₽</div>
             <button class="add-cart">В корзину</button>
         </div>
-
         <div class="material-card" data-category="tools">
-            <h3>🔩 Саморезы</h3>
-            <p>Универсальные</p>
+            <h3>🔩 Саморезы универсальные</h3>
+            <p>Оцинкованные</p>
             <div class="price">50 ₽</div>
             <button class="add-cart">В корзину</button>
         </div>
+        <div class="material-card" data-category="cement">
+            <h3>⛏ Песок строительный</h3>
+            <p>Мытый, карьерный</p>
+            <div class="price">750 ₽</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+        <div class="material-card" data-category="cement">
+            <h3>🪨 Щебень гранитный</h3>
+            <p>Фракция 20–40</p>
+            <div class="price">1300 ₽</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+        <div class="material-card" data-category="wood">
+            <h3>🪵 Доска обрезная</h3>
+            <p>25×150</p>
+            <div class="price">9500 ₽</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+        <div class="material-card" data-category="tools">
+            <h3>🔨 Перфоратор</h3>
+            <p>Профессиональный</p>
+            <div class="price">6900 ₽</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+        <div class="material-card" data-category="tools">
+            <h3>🧹 Лопата строительная</h3>
+            <p>Стальная</p>
+            <div class="price">900 ₽</div>
+            <button class="add-cart">В корзину</button>
+        </div>
+    </div>
 
+    <!-- Корзина -->
+    <div class="cart" onclick="toggleCart()">
+        🛒 <span id= cartCount >0</span> | <span id="cartTotal">0 ₽</span>
+    </div>
+
+    <div class="cart-panel" id="cartPanel">
+        <h3>Корзина</h3>
+        <div id="cartItems"></div>
+        <div class="cart-footer">
+            <strong>Итого: <span id="cartSum">0 ₽</span></strong>
+            <div>
+                <button onclick="clearCart()">Очистить</button>
+                <button onclick="startCheckout()">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалки -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuth()">×</span>
+            <h3>Регистрация / Вход</h3>
+            <form onsubmit="authUser(); return false;">
+                <input type="text" id="authName" placeholder="Имя" required>
+                <input type="email" id="authEmail" placeholder="Email" required>
+                <input type="password" id="authPass" placeholder="Пароль" required>
+                <button>Продолжить</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCheckout()">×</span>
+            <h3>Оформление заказа</h3>
+            <form onsubmit="submitOrder(); return false;">
+                <input type="text" id="orderAddress" placeholder="Адрес доставки" required>
+                <textarea id="orderComment" placeholder="Комментарий к заказу"></textarea>
+                <button>Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
     </div>
 </section>
 </section>
@@ -873,10 +1060,14 @@ form button:hover {
     </div>
 </section>
 </section>
-
+<!-- Весь основной контент сайта -->
 <footer>
     <p>&copy; 2025 Строительная Компания.</p>
 </footer>
+
+<!-- Скрипты -->
+<script src="js/cart.js"></script>
+</body>
 <script>
 const elements = document.querySelectorAll('.fade-in');
 
@@ -890,7 +1081,7 @@ window.addEventListener('scroll', () => {
 });
 </script>
 <script>
-let cartCount = 0;
+    
 
 document.querySelectorAll('.add-cart').forEach(button => {
     button.addEventListener('click', () => {
@@ -936,6 +1127,130 @@ function sendJob() {
     alert('Заявка отправлена! Мы свяжемся с вами.');
     closeJob();
 }
+</script>
+<script>
+function filterItems(category) {
+    document.querySelectorAll('.material-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+</script>
+<script>
+// ----- Фильтр товаров -----
+function filterItems(category) {
+    document.querySelectorAll('.material-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// ----- Корзина -----
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let user = JSON.parse(localStorage.getItem('user')) || null;
+
+const cartItems = document.getElementById('cartItems');
+const cartCount = document.getElementById('cartCount');
+const cartTotal = document.getElementById('cartTotal');
+const cartSum = document.getElementById('cartSum');
+
+// Добавление товара в корзину
+document.querySelectorAll('.add-cart').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.material-card');
+        const name = card.querySelector('h3').innerText;
+        const priceText = card.querySelector('.price').innerText;
+        const price = parseInt(priceText.replace(/\D/g, ''));
+        cart.push({ name, price });
+        saveCart();
+    });
+});
+
+// Сохранение и рендер корзины
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+function renderCart() {
+    cartItems.innerHTML = '';
+    let sum = 0;
+    cart.forEach((item, index) => {
+        sum += item.price;
+        cartItems.innerHTML += `
+            <div class="cart-item">
+                <span>${item.name}</span>
+                <span>${item.price} ₽ <button onclick="removeItem(${index})">✖</button></span>
+            </div>
+        `;
+    });
+    cartCount.innerText = cart.length;
+    cartTotal.innerText = sum + ' ₽';
+    cartSum.innerText = sum + ' ₽';
+}
+
+// Удаление товара
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+}
+
+// Очистка корзины
+function clearCart() {
+    cart = [];
+    saveCart();
+}
+
+// Показ/скрытие панели корзины
+function toggleCart() {
+    const panel = document.getElementById('cartPanel');
+    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
+
+// ----- Модалки: Авторизация и Оформление заказа -----
+function startCheckout() {
+    if (!cart.length) return alert('Корзина пуста');
+    if (!user) document.getElementById('authModal').style.display = 'flex';
+    else document.getElementById('checkoutModal').style.display = 'flex';
+}
+
+function authUser() {
+    const authNameInput = document.getElementById('authName');
+    const authEmailInput = document.getElementById('authEmail');
+    user = { name: authNameInput.value, email: authEmailInput.value };
+    localStorage.setItem('user', JSON.stringify(user));
+    closeAuth();
+    document.getElementById('checkoutModal').style.display = 'flex';
+}
+
+function closeAuth() { document.getElementById('authModal').style.display = 'none'; }
+function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
+
+// ----- Подтверждение заказа -----
+function submitOrder() {
+    const order = {
+        user,
+        items: cart,
+        address: document.getElementById('orderAddress').value,
+        comment: document.getElementById('orderComment').value,
+        total: cart.reduce((s, i) => s + i.price, 0),
+        date: new Date().toLocaleString()
+    };
+    console.log('ЗАКАЗ:', order);
+    alert('Заказ оформлен! Спасибо 🙌');
+    cart = [];
+    saveCart();
+    closeCheckout();
+}
+
+// ----- Инициализация корзины при загрузке -----
+renderCart();
 </script>
 </body>
 </html>
