@@ -644,9 +644,116 @@ form button:hover {
     font-size: 24px;
     cursor: pointer;
 }
+.catalog-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #ffad14;
+    color: #fff;
+    padding: 12px 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 5000;
+}
+
+.catalog-menu {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+    z-index: 6000;
+    transition: 0.4s;
+    overflow-y: auto;
+}
+
+.catalog-menu.active {
+    left: 0;
+}
+
+.catalog-header {
+    background: #ffad14;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.catalog-section {
+    padding: 15px 20px;
+}
+
+.catalog-section h4 {
+    margin-bottom: 10px;
+}
+
+.catalog-section ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.catalog-section li {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.catalog-section li:hover {
+    background: #f3f3f3;
+    padding-left: 18px;
+}
     </style>
 </head>
     <body>
+        <!-- Каталог магазина -->
+<div class="catalog-toggle" onclick="toggleCatalog()">☰ Каталог</div>
+
+<div class="catalog-menu" id="catalogMenu">
+
+    <div class="catalog-header">
+        <h3>Каталог</h3>
+        <span onclick="toggleCatalog()">×</span>
+    </div>
+
+    <div class="catalog-section">
+        <h4>🏗 Стройматериалы</h4>
+        <ul>
+            <li onclick="filterItems('brick')">Кирпич</li>
+            <li onclick="filterItems('block')">Блоки</li>
+            <li onclick="filterItems('cement')">Цемент и смеси</li>
+        </ul>
+    </div>
+
+    <div class="catalog-section">
+        <h4>🛠 Инструменты</h4>
+        <ul>
+            <li onclick="filterItems('tools')">Электроинструмент</li>
+            <li onclick="filterItems('tools')">Ручной инструмент</li>
+        </ul>
+    </div>
+
+    <div class="catalog-section">
+        <h4>🪑 Мебель</h4>
+        <ul>
+            <li onclick="filterItems('furniture')">Кухни</li>
+            <li onclick="filterItems('furniture')">Шкафы</li>
+            <li onclick="filterItems('furniture')">Офисная мебель</li>
+        </ul>
+    </div>
+
+    <div class="catalog-section">
+        <h4>🔥 Акции</h4>
+        <ul>
+            <li onclick="filterItems('sale')">Товары со скидкой</li>
+        </ul>
+    </div>
+
+</div>
 <header>
     <h1>СТРОИТЕЛЬНАЯ КОМПАНИЯ</h1>
     <nav>
@@ -1251,6 +1358,11 @@ function submitOrder() {
 
 // ----- Инициализация корзины при загрузке -----
 renderCart();
+</script>
+<script>
+function toggleCatalog() {
+    document.getElementById('catalogMenu').classList.toggle('active');
+}
 </script>
 </body>
 </html>
