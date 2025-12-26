@@ -660,8 +660,8 @@ form button:hover {
 .catalog-menu {
     position: fixed;
     top: 0;
-    left: -320px;
-    width: 300px;
+    left: -380px;
+    width: 360px;          
     height: 100vh;
     background: #fff;
     box-shadow: 5px 0 25px rgba(0,0,0,0.2);
@@ -710,46 +710,139 @@ form button:hover {
     </style>
 </head>
     <body>
-        <!-- Каталог магазина -->
+       <!-- Каталог магазина -->
 <div class="catalog-toggle" onclick="toggleCatalog()">☰ Каталог</div>
 
 <div class="catalog-menu" id="catalogMenu">
 
     <div class="catalog-header">
-        <h3>Каталог</h3>
+        <div style="padding: 15px 20px;">
+            <input 
+                type="text" 
+                id="catalogSearch"
+                placeholder="🔍 Поиск по товарам..."
+                oninput="searchCatalog(this.value)"
+                style="
+                    width:100%;
+                    padding:12px;
+                    border-radius:6px;
+                    border:1px solid #ccc;
+                    font-size:15px;
+                ">
+        </div>
+        <h3></h3>
         <span onclick="toggleCatalog()">×</span>
     </div>
 
+    <!-- 🏗 СТРОИТЕЛЬНЫЕ МАТЕРИАЛЫ -->
     <div class="catalog-section">
         <h4>🏗 Стройматериалы</h4>
         <ul>
-            <li onclick="filterItems('brick')">Кирпич</li>
-            <li onclick="filterItems('block')">Блоки</li>
-            <li onclick="filterItems('cement')">Цемент и смеси</li>
+            <li onclick="filterItems('brick')">Кирпич рядовой</li>
+            <li onclick="filterItems('brick-face')">Кирпич облицовочный</li>
+            <li onclick="filterItems('gasblock')">Газобетон</li>
+            <li onclick="filterItems('foamblock')">Пеноблок</li>
+            <li onclick="filterItems('keramzitblock')">Керамзитоблок</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('cement')">Цемент</li>
+            <li onclick="filterItems('sand-concrete')">Пескобетон</li>
+            <li onclick="filterItems('plaster')">Штукатурка</li>
+            <li onclick="filterItems('tile-glue')">Клей плиточный</li>
+            <li onclick="filterItems('self-level')">Самовыравнивающиеся смеси</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('sand')">Песок</li>
+            <li onclick="filterItems('gravel')">Щебень</li>
+            <li onclick="filterItems('screenings')">Отсев</li>
+            <li onclick="filterItems('keramzit')">Керамзит</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('timber')">Брус</li>
+            <li onclick="filterItems('board')">Доска обрезная</li>
+            <li onclick="filterItems('planed-board')">Доска строганная</li>
+            <li onclick="filterItems('plywood')">Фанера</li>
+            <li onclick="filterItems('osb')">ОСБ</li>
         </ul>
     </div>
 
+    <!-- 🛠 ИНСТРУМЕНТЫ -->
     <div class="catalog-section">
         <h4>🛠 Инструменты</h4>
         <ul>
-            <li onclick="filterItems('tools')">Электроинструмент</li>
-            <li onclick="filterItems('tools')">Ручной инструмент</li>
+            <li onclick="filterItems('perforator')">Перфораторы</li>
+            <li onclick="filterItems('drill')">Дрели</li>
+            <li onclick="filterItems('grinder')">Болгарки</li>
+            <li onclick="filterItems('jigsaw')">Лобзики</li>
+            <li onclick="filterItems('screwdriver')">Шуруповёрты</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('hammer')">Молотки</li>
+            <li onclick="filterItems('screwdriver-hand')">Отвёртки</li>
+            <li onclick="filterItems('wrench')">Ключи</li>
+            <li onclick="filterItems('pliers')">Плоскогубцы</li>
+            <li onclick="filterItems('roulette')">Рулетки</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('screws')">Саморезы</li>
+            <li onclick="filterItems('dowels')">Дюбеля</li>
+            <li onclick="filterItems('drills')">Буры</li>
+            <li onclick="filterItems('discs')">Диски</li>
+            <li onclick="filterItems('bits')">Биты</li>
         </ul>
     </div>
 
+    <!-- 🪑 МЕБЕЛЬ -->
     <div class="catalog-section">
         <h4>🪑 Мебель</h4>
         <ul>
-            <li onclick="filterItems('furniture')">Кухни</li>
-            <li onclick="filterItems('furniture')">Шкафы</li>
-            <li onclick="filterItems('furniture')">Офисная мебель</li>
+            <li onclick="filterItems('kitchen')">Кухни</li>
+            <li onclick="filterItems('wardrobe')">Шкафы</li>
+            <li onclick="filterItems('table')">Столы</li>
+            <li onclick="filterItems('chair')">Стулья</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('office-table')">Рабочие столы</li>
+            <li onclick="filterItems('office-chair')">Кресла</li>
+            <li onclick="filterItems('doc-cabinet')">Шкафы для документов</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('bench')">Лавки</li>
+            <li onclick="filterItems('metal-cabinet')">Металлические шкафы</li>
+            <li onclick="filterItems('workbench')">Верстаки</li>
         </ul>
     </div>
 
+    <!-- 🔧 МЕЛОЧЁВКА -->
+    <div class="catalog-section">
+        <h4>🔧 Мелочёвка</h4>
+        <ul>
+            <li onclick="filterItems('fasteners')">Саморезы</li>
+            <li onclick="filterItems('nails')">Гвозди</li>
+            <li onclick="filterItems('anchors')">Анкера</li>
+            <li onclick="filterItems('studs')">Шпильки</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('film')">Плёнка</li>
+            <li onclick="filterItems('waterproof')">Гидроизоляция</li>
+            <li onclick="filterItems('vapor')">Пароизоляция</li>
+            <li onclick="filterItems('insulation')">Утеплитель</li>
+        </ul>
+        <ul>
+            <li onclick="filterItems('bucket')">Вёдра</li>
+            <li onclick="filterItems('brush')">Кисти</li>
+            <li onclick="filterItems('roller')">Валики</li>
+            <li onclick="filterItems('gloves')">Перчатки</li>
+        </ul>
+    </div>
+
+    <!-- 🔥 АКЦИИ -->
     <div class="catalog-section">
         <h4>🔥 Акции</h4>
         <ul>
             <li onclick="filterItems('sale')">Товары со скидкой</li>
+            <li onclick="filterItems('new')">Новинки</li>
+            <li onclick="filterItems('hit')">Хиты продаж</li>
         </ul>
     </div>
 
@@ -801,7 +894,7 @@ form button:hover {
     <h2>МАТЕРИАЛЫ</h2>
 
 <section id="materials">
-    <h2>МАТЕРИАЛЫ И МАГАЗИН</h2>
+    <h2>В АССОРТИМЕНТЕ</h2>
 
     <!-- Фильтр -->
     <div class="filter-buttons">
@@ -1359,9 +1452,34 @@ function submitOrder() {
 // ----- Инициализация корзины при загрузке -----
 renderCart();
 </script>
+
 <script>
 function toggleCatalog() {
-    document.getElementById('catalogMenu').classList.toggle('active');
+    const menu = document.getElementById('catalogMenu');
+    const btn = document.querySelector('.catalog-toggle');
+
+    menu.classList.toggle('active');
+
+    // Прячем кнопку, если каталог открыт
+    btn.style.display = menu.classList.contains('active') ? 'none' : 'block';
+}
+</script>
+<script>
+function searchCatalog(query) {
+    query = query.trim().toLowerCase();
+
+    // Автопереход к товарам
+    document.getElementById('materials').scrollIntoView({ behavior: 'smooth' });
+
+    document.querySelectorAll('.material-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+
+        if (!query || text.includes(query)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
 }
 </script>
 </body>
